@@ -2758,3 +2758,5 @@ function lib:Notify(title, desc, dur)
 	end)()
 end
 
+getgenv().library = lib
+return lib
