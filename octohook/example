@@ -1,0 +1,333 @@
+-- keybind for menu is E, change source if needed
+
+local dim_offset = UDim2.fromOffset 
+local dim2 = UDim2.new 
+local Camera = workspace.CurrentCamera -- DETECTED WTFFF
+local rgb = Color3.fromRGB 
+local Players = cloneref(game:GetService("Players")) -- Thanks peke for the bullying 
+local LocalPlayer = Players.LocalPlayer
+
+local Library, Esp, MiscOptions, Options = loadstring(game:HttpGet("https://raw.githubusercontent.com/bigdanix/elegant-ui-libs/refs/heads/main/octohook/source"))()
+local Holder = Library:Window({Name = "octohook"})
+
+local Window = Holder:Panel({
+    Name = "octohook", 
+    ButtonName = "Menu", 
+    Size = dim_offset(600, 709), 
+    Position = dim2(0, (Camera.ViewportSize.X / 2) - 550/2, 0, (Camera.ViewportSize.Y / 2) - 709/2), -- offset based on sizing 
+})
+
+
+local aimbot = Window:Tab({Name = "aimbot"})
+local visuals = Window:Tab({Name = "visuals"})
+local misc = Window:Tab({Name = "misc"})
+local settingss = Window:Tab({Name = "settings"})
+
+-- aimbot tab
+local col1 = aimbot:Column({})
+local aimassist = col1:Section({Name = "aim assistance"})
+local aa_enb = aimassist:Toggle({Name = "enabled", Callback = function(bool)
+
+end})
+
+aimassist:Label({Name = "keybind : MB2"})
+
+
+
+aimassist:Slider({Name = "smoothness", Min = 0.1, Max = 1, Decimal = 0.05, Default = 0.1, Callback = function(v)
+
+end})
+
+aimassist:Dropdown({Name = "preferred hitbox", Options = {"Head", "HumanoidRootPart", "UpperTorso", "Torso", "LowerTorso"}, Default = "Head", Multi = false, Callback = function(v)
+
+end})
+
+aimassist:Toggle({Name = "bone prioritization", Callback = function(bool)
+
+end})
+
+
+aimassist:Toggle({Name = "snapline", Callback = function(state)
+
+end}):Colorpicker({Color = rgb(255, 255, 255), Alpha = 1, Callback = function(c)
+
+end})
+
+aimassist:Slider({Name = "thickness", Min = 1, Max = 5, Decimal = 1, Default = 2, Callback = function(v)
+
+end})
+
+aimassist:Dropdown({Name = "position", Options = {"cursor", "center"}, Default = "cursor", Multi = false, Callback = function(v)
+
+end})
+
+aimassist:Toggle({Name = "team check", Callback = function(state)
+
+end})
+
+aimassist:Toggle({Name = "visible check", Default = true, Callback = function(bool)
+
+end})
+
+aimassist:Dropdown({Name = "ray origin", Options = {"camera", "character"}, Default = "camera", Multi = false, Callback = function(v)
+
+end})
+
+aimassist:Toggle({Name = "sticky target", Default = false, Callback = function(bool)
+
+end})
+
+aimassist:Slider({Name = "max distance", Min = 1, Max = 2000, Decimal = 1, Default = 300, Callback = function(v)
+
+end})
+
+local col2 = aimbot:Column({})
+
+local fovcircle = col2:Section({Name = "fov circle"})
+
+local fc_enb = fovcircle:Toggle({
+    Name = "enabled",
+    Default = false,
+    Callback = function(bool)
+
+    end
+})
+:Colorpicker({
+    Color = rgb(255, 255, 255),
+    Alpha = 1,
+    Callback = function(c)
+
+    end
+})
+
+local fco_enb = fovcircle:Toggle({Name = "outline", Default = false, Callback = function(bool)
+
+end}):Colorpicker({Color = rgb(0, 0, 0), Alpha = 1, Callback = function(c)
+
+end})
+
+local fcfi_enb = fovcircle:Toggle({Name = "filled", Callback = function(bool)
+
+end}):Colorpicker({Color = rgb(255, 255, 255), Alpha = 0.35, Callback = function(c)
+
+end})
+
+fovcircle:Dropdown({Name = "position", Options = {"cursor", "center"}, Default = "cursor", Multi = false, Callback = function(v)
+
+end})
+
+fovcircle:Slider({Name = "radius", Min = 1, Max = 360, Decimal = 1, Default = 60, Callback = function(v)
+
+end})
+
+fovcircle:Slider({Name = "sides", Min = 3, Max = 180, Decimal = 1, Default = 90, Callback = function(v)
+
+end})
+
+fovcircle:Slider({Name = "thickness", Min = 1, Max = 5, Decimal = 1, Default = 1, Callback = function(v)
+
+end})
+
+fovcircle:Label({Name = ""})
+
+fovcircle:Label({Name = "   custom effects"})
+
+local fce_enb = fovcircle:Toggle({Name = "enabled", Default = false, Callback = function(bool)
+
+end})
+
+fovcircle:Dropdown({Name = "fov circle effect", Options = {"pulse", "rainbow"}, Default = "", Multi = false, Callback = function(v)
+
+end})
+
+fovcircle:Slider({Name = "pulse speed", Min = 1, Max = 15, Decimal = 1, Default = 4, Callback = function(v)
+
+end})
+
+fovcircle:Slider({Name = "pulse range", Min = 1, Max = 50, Decimal = 1, Default = 10, Callback = function(v)
+
+end})
+
+fovcircle:Slider({Name = "rainbow speed", Min = 1, Max = 20, Decimal = 1, Default = 5, Callback = function(v)
+
+end})
+
+local predictions = col1:Section({Name = "prediction"})
+local prd_enb = predictions:Toggle({Name = "enabled", Default = false, Callback = function(bool)
+
+end})
+
+predictions:Slider({Name = "factor", Min = 0, Max = 2, Decimal = 0.001, Default = 0.125, Callback = function(v)
+
+end})
+
+
+
+-- visuals
+local col6 = visuals:Column({})
+
+local playeresp = col6:Section({Name = "player esp"})
+playeresp:Toggle({Name = "enabled", Default = false, Callback = function(bool)
+
+end})
+
+playeresp:Slider({Name = "text size", Min = 10, Max = 30, Decimal = 1, Default = 13, Callback = function(v)
+
+end})
+
+playeresp:Toggle({Name = "limit distance", Default = false, Callback = function(bool)
+
+end})
+
+playeresp:Slider({Name = "max distance", Min = 1, Max = 3000, Decimal = 1, Default = 1000, Callback = function(v)
+
+end})
+
+playeresp:Toggle({Name = "name", Callback = function(state)
+  
+end}):Colorpicker({Color = rgb(255, 255, 255), Callback = function(v)
+
+end})
+
+playeresp:Toggle({Name = "box", Callback = function(state)
+
+end}):Colorpicker({Color = rgb(255, 255, 255), Callback = function(c)
+
+end})
+
+playeresp:Toggle({Name = "box fill", Callback = function(state)
+
+end}):Colorpicker({Color = rgb(60, 124, 38), Callback = function(c)
+
+end})
+
+local hbar = playeresp:Toggle({Name = "health bar", Callback = function(state)
+
+end})
+hbar:Colorpicker({Color = rgb(0, 255, 0), Callback = function(c)
+
+end})
+hbar:Colorpicker({Color = rgb(255, 0, 0), Callback = function(c)
+
+end})
+
+playeresp:Toggle({Name = "health text", Callback = function(state)
+
+end}):Colorpicker({Color = rgb(60, 124, 38), Callback = function(c)
+
+end})
+
+playeresp:Toggle({Name = "distance", Callback = function(state)
+
+end}):Colorpicker({Color = rgb(255, 255, 255), Callback = function(c)
+
+end})
+
+playeresp:Toggle({Name = "tracers", Callback = function(state)
+
+end}):Colorpicker({Color = rgb(255, 255, 255), Callback = function(c)
+
+end})
+
+playeresp:Dropdown({Name = "origin", Options = {"Bottom", "Middle", "Top"}, Default = "Bottom", Multi = false, Callback = function(v)
+
+end})
+
+local fovarrow = playeresp:Toggle({Name = "fov arrows", Callback = function(state)
+
+end})
+fovarrow:Colorpicker({Color = rgb(255, 255, 255), Callback = function(c)
+
+end})
+
+playeresp:Slider({Name = "arrow size", Min = 1, Max = 50, Decimal = 1, Default = 15, Callback = function(v)
+
+end})
+
+playeresp:Slider({Name = "arrow radius", Min = 1, Max = 360, Decimal = 1, Default = 65, Callback = function(v)
+
+end})
+
+local chams = playeresp:Toggle({Name = "chams", Callback = function(state)
+
+end})
+chams:Colorpicker({Color = rgb(60, 124, 38), Callback = function(c)
+
+end})
+chams:Colorpicker({Color = rgb(40, 104, 18), Callback = function(c)
+
+end})
+
+
+
+-- misc
+local col67 = misc:Column({})
+local targetinfo = col67:Section({Name = "target info"})
+
+local ti_enb = targetinfo:Toggle({Name = "enabled", Callback = function(bool)
+
+end}):Colorpicker({Color = rgb(255, 255, 255), Callback = function(c)
+
+end})
+
+targetinfo:Dropdown({Name = "position", Options = {"target", "above_circle", "top", "bottom", "left", "right"}, Default = "target", Multi = false, Callback = function(v)
+
+end})
+
+targetinfo:Slider({Name = "hud offset", Min = 1, Max = 120, Decimal = 1, Default = 50, Callback = function(v)
+
+end})
+
+targetinfo:Dropdown({Name = "font", Options = {"0", "1", "2", "3"}, Default = "3", Multi = false, Callback = function(v)
+
+end})
+
+targetinfo:Slider({Name = "text size", Min = 12, Max = 25, Decimal = 1, Default = 16, Callback = function(v)
+
+end})
+
+targetinfo:Slider({Name = "line spacing", Min = 10, Max = 30, Decimal = 1, Default = 18, Callback = function(v)
+
+end})
+
+
+
+
+
+
+
+
+local col41 = misc:Column({})
+local crosshair = col41:Section({Name = "custom crosshair"})
+local crs_enb = crosshair:Toggle({Name = "enabled", Callback = function(bool)
+
+end}):Colorpicker({Color = rgb(255, 255, 255), Callback = function(c)
+
+end})
+local crso_enb = crosshair:Toggle({Name = "outline", Default = true, Callback = function(bool)
+
+end}):Colorpicker({Color = rgb(0, 0, 0),  Callback = function(c)
+
+end})
+
+crosshair:Dropdown({Name = "position", Options = {"cursor", "center"}, Default = "cursor", Multi = false, Callback = function(v)
+
+end})
+
+
+crosshair:Slider({Name = "gap", Min = 1, Max = 20, Decimal = 1, Default = 6, Callback = function(v)
+
+end})
+
+crosshair:Slider({Name = "length", Min = 1, Max = 30, Decimal = 1, Default = 8, Callback = function(v)
+
+end})
+
+crosshair:Slider({Name = "thickness", Min = 1, Max = 5, Decimal = 1, Default = 2, Callback = function(v)
+
+end})
+
+
+
+-- settings
+Library:Configs(Holder, settingss)
