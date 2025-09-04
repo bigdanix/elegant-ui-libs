@@ -1,2 +1,2 @@
 # ! preview
-![a](https://raw.githubusercontent.com/bigdanix/elegant-ui-libs/refs/heads/main/monolith/preview.png)
+![a](https://raw.githubusercontent.com/bigdanix/elegant-ui-libs/refs/heads/main/!%20images/monolith.png)
