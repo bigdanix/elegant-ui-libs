@@ -6855,4 +6855,446 @@ do
     end
 end
 
+
+--
+local title_string = "gamesneeze"
+local lib = library:New({name = title_string, PageAmmount = 4, uibind = Enum.KeyCode.E})
+--
+local aimbot = lib:Page({name = "aimbot"})
+local visuals = lib:Page({name = "visuals"})
+local misc = lib:Page({name = "miscellaneous"})
+local settings = lib:Page({name = "settings"})
+--
+
+
+
+-- aim assist
+local aimassist = aimbot:Section({name = "aim assistance"})
+aimassist:Toggle({name = "enabled", def = false, callback = function(bool)
+
+end})
+
+aimassist:Dropdown({name = "keybind", options = {"MouseButton1", "MouseButton2", "E", "Q", "X", "V"}, def = "MouseButton2", callback = function(selected)
+
+end})
+
+aimassist:Slider({name = "smoothness", min = 0.05, max = 1, def = 0.1, suffix = "%", decimals = 0.05, callback = function(v)
+
+end})
+
+aimassist:Slider({name = "max distance", min = 1, max = 5000, def = 1000, suffix = "m", decimals = 1, callback = function(v)
+
+end})
+
+aimassist:Dropdown({name = "preferred hitbox", options = {"Head", "HumanoidRootPart", "UpperTorso", "Torso", "LowerTorso"}, def = "Head", callback = function(selected)
+
+end})
+
+aimassist:Toggle({name = "bone prioritization", def = false, callback = function(bool)
+
+end})
+
+aimassist:Toggle({name = "snapline", def = false, callback = function(bool)
+
+end}):Colorpicker({name = "snapline color", def = Color3.fromRGB(255,255,255), callback = function(color)
+
+end})
+
+aimassist:Slider({name = "thickness", min = 1, max = 5, def = 1, suffix = "%", decimals = 1, callback = function(v)
+
+end})
+
+aimassist:Dropdown({name = "origin", options = {"cursor", "center"}, def = "cursor", callback = function(selected)
+
+end})
+
+aimassist:Toggle({name = "team check", def = true, callback = function(bool)
+
+end})
+
+aimassist:Toggle({name = "visible check", def = true, callback = function(bool)
+
+end})
+
+aimassist:Dropdown({name = "ray origin", options = {"camera", "character"}, def = "camera", callback = function(selected)
+
+end})
+
+
+local prediction = aimbot:Section({name = "prediction", side = "left"})
+
+prediction:Toggle({name = "enabled", def = false, callback = function(bool)
+
+end})
+
+prediction:Slider({name = "factor", min = 0, max = 2, def = 0.125, suffix = "%", decimals = 0.001, callback = function(v)
+
+end})
+
+
+
+--
+local fovcircle = aimbot:Section({name = "fov circle", side = "right"})
+fovcircle:Toggle({name = "enabled", def = false, callback = function(bool)
+
+end}):Colorpicker({name = "fov circle color", def = Color3.fromRGB(255,255,255), callback = function(color)
+
+end})
+
+fovcircle:Toggle({name = "outline", def = true, callback = function(bool)
+
+end}):Colorpicker({name = "fov circle outline color", def = Color3.fromRGB(0,0,0), callback = function(color)
+
+end})
+
+fovcircle:Toggle({name = "filled", def = false, callback = function(bool)
+
+end}):Colorpicker({name = "fov circle fill color", def = Color3.fromRGB(255,255,255), Alpha = 0.3, callback = function(color)
+
+end})
+
+fovcircle:Slider({name = "transparency", min = 0.1, max = 1, def = 0.3, suffix = "%", decimals = 0.1, callback = function(v)
+
+end})
+
+fovcircle:Slider({name = "radius", min = 1, max = 720, def = 90, suffix = "°", decimals = 1, callback = function(v)
+
+end})
+
+fovcircle:Slider({name = "sides", min = 1, max = 180, def = 60, suffix = "", decimals = 1, callback = function(v)
+
+end})
+
+fovcircle:Slider({name = "thickness", min = 1, max = 10, def = 1, suffix = "%", decimals = 1, callback = function(v)
+
+end})
+
+fovcircle:Dropdown({name = "origin", options = {"cursor", "center"}, def = "cursor", callback = function(selected)
+
+end})
+
+fovcircle:Label({name = "- custom effects -", middle = true})
+
+fovcircle:Toggle({name = "enabled", def = false, callback = function(bool)
+
+end})
+
+fovcircle:Dropdown({name = "fov circle effect", options = {"pulse", "rainbow"}, def = "pulse", callback = function(selected)
+
+end})
+
+fovcircle:Slider({name = "pulse speed", min = 1, max = 20, def = 4, suffix = "%", decimals = 1, callback = function(v)
+
+end})
+
+fovcircle:Slider({name = "pulse range", min = 1, max = 50, def = 20, suffix = "%", decimals = 1, callback = function(v)
+
+end})
+
+fovcircle:Slider({name = "rainbow speed", min = 1, max = 50, def = 5, suffix = "%", decimals = 1, callback = function(v)
+
+end})
+
+
+
+
+
+
+local triggerbot = aimbot:Section({name = "auto shoot", side = "right"})
+
+triggerbot:Toggle({name = "enabled", def = false, callback = function(bool)
+
+end})
+
+triggerbot:Dropdown({name = "keybind", options = {"MouseButton1", "MouseButton2", "E", "Q", "X", "V"}, def = "MouseButton2", callback = function(selected)
+
+end})
+
+triggerbot:Slider({name = "delay", min = 0, max = 5, def = 0.1, suffix = "s", decimals = 0.001, callback = function(v)
+
+end})
+
+
+
+
+-- visuals
+local playeresp = visuals:Section({name = "player esp"})
+playeresp:Toggle({name = "enabled", def = false, callback = function(bool)
+
+end})
+
+playeresp:Toggle({name = "name", def = false, callback = function(bool)
+
+end}):Colorpicker({name = "name color", def = Color3.fromRGB(255,255,255), callback = function(color)
+
+end})
+
+playeresp:Toggle({name = "box", def = false, callback = function(bool)
+
+end}):Colorpicker({name = "box color", def = Color3.fromRGB(255,255,255), callback = function(color)
+
+end})
+
+playeresp:Toggle({name = "box fill", def = false, callback = function(bool)
+ 
+end}):Colorpicker({name = "box fill color", def = Color3.fromRGB(200,200,200), callback = function(color)
+
+end})
+
+local hbaresp = playeresp:Toggle({name = "health bar", def = false, callback = function(bool)
+
+end})
+hbaresp:Colorpicker({name = "dying color", def = Color3.fromRGB(255,0,0), callback = function(color)
+
+end})
+hbaresp:Colorpicker({name = "healthy color", def = Color3.fromRGB(0,255,0), callback = function(color)
+
+end})
+
+playeresp:Toggle({name = "health text", def = false, callback = function(bool)
+
+end}):Colorpicker({name = "health text color", def = Color3.fromRGB(0,255,0), callback = function(color)
+
+end})
+
+playeresp:Toggle({name = "distance", def = false, callback = function(bool)
+
+end}):Colorpicker({name = "distance color", def = Color3.fromRGB(255,255,255), callback = function(color)
+
+end})
+
+playeresp:Toggle({name = "tracers", def = false, callback = function(bool)
+
+end}):Colorpicker({name = "tracer color", def = Color3.fromRGB(255,255,255), callback = function(color)
+
+end})
+
+playeresp:Dropdown({name = "tracer origin", options = {"Bottom", "Middle", "Top"}, def = "Bottom", callback = function(selected)
+
+end})
+
+playeresp:Toggle({name = "fov arrows", def = false, callback = function(bool)
+
+end}):Colorpicker({name = "fov arrows color", def = Color3.fromRGB(255,255,255), callback = function(color)
+
+end})
+
+playeresp:Slider({name = "arrows radius", min = 1, max = 360, def = 65, suffix = "°", decimals = 1, callback = function(v)
+
+end})
+
+
+playeresp:Slider({name = "arrows size", min = 1, max = 50, def = 15, suffix = "%", decimals = 1, callback = function(v)
+
+end})
+
+playeresp:Label({name = "- settings -", middle = true})
+
+playeresp:Toggle({name = "limit distance", def = false, callback = function(bool)
+
+end})
+
+playeresp:Slider({name = "max distance", min = 1, max = 5000, def = 300, suffix = "m", decimals = 1, callback = function(v)
+
+end})
+
+playeresp:Toggle({name = "team check", def = false, callback = function(bool)
+
+end})
+
+
+
+
+-- misc
+local antiaim = misc:Section({name = "anti aim"})
+antiaim:Toggle({name = "enabled", def = false, callback = function(bool)
+
+end})
+antiaim:Slider({name = "yaw offset", min = -180, max = 180, def = 0, suffix = "°", decimals = 1, callback = function(v)
+
+end})
+antiaim:Slider({name = "jitter offset", min = 0, max = 180, def = 15, suffix = "°", decimals = 1, callback = function(v)
+
+end})
+antiaim:Slider({name = "jitter speed", min = 1, max = 50, def = 5, suffix = "x", decimals = 1, callback = function(v)
+
+end})
+
+
+
+local crosshair = misc:Section({name = "crosshair", side = "right"})
+crosshair:Toggle({name = "enabled", def = false, callback = function(bool)
+    
+end}):Colorpicker({name = "crosshair color", def = Color3.fromRGB(255,255,255), callback = function(color)
+    
+end})
+
+crosshair:Toggle({name = "outline", def = true, callback = function(bool)
+    
+end}):Colorpicker({name = "crosshair color", def = Color3.fromRGB(0,0,0), callback = function(color)
+    
+end})
+
+crosshair:Slider({name = "length", min = 1, max = 50, def = 8, suffix = "px", decimals = 1, callback = function(v)
+    
+end})
+
+crosshair:Slider({name = "gap", min = 0, max = 50, def = 5, suffix = "px", decimals = 1, callback = function(v)
+    
+end})
+
+crosshair:Slider({name = "thickness", min = 1, max = 10, def = 2, suffix = "%", decimals = 1, callback = function(v)
+    
+end})
+
+crosshair:Dropdown({name = "origin", options = {"cursor", "center"}, def = "cursor", callback = function(selected)
+    
+end})
+
+
+
+
+
+
+-- settings
+local menusettings = settings:Section({name = "ui settings"})
+menusettings:Keybind({name = "menu bind", mode = "Toggle", def = Enum.KeyCode.E, callback = function(key)
+    lib.uibind = key
+end})
+
+menusettings:Button({name = "unload", callback = function()
+    lib:Unload()
+end})
+
+local serversettings = settings:Section({name = "server"})
+serversettings:Button({name = "copy gameID", callback = function()
+    setclipboard(game.GameId)
+end})
+serversettings:Button({name = "rejoin", callback = function()
+    game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, lp)
+end})
+
+-- Default active theme on startup
+local selectedThemeName = "default"       -- dropdown default
+local activeThemeName = selectedThemeName
+local activeTheme = themes[activeThemeName] -- requires your `themes` table to exist already
+
+-- apply once at start
+applyTheme(activeThemeName)
+
+local themesettings = settings:Section({name = "themes"})
+
+themesettings:Dropdown({
+    name = "custom theme",
+    options = {"default","light","gamesense","fatality","neverlose","nekocheat"},
+    def = selectedThemeName,
+    callback = function(choice)
+        selectedThemeName = choice
+    end
+})
+
+-- apply the chosen theme
+themesettings:Button({
+    name = "load theme",
+    callback = function()
+        if selectedThemeName then
+            applyTheme(selectedThemeName)
+            print("Theme applied:", selectedThemeName)
+        end
+    end
+})
+
+-- all colorpickers modify the COPY (activeTheme), never the presets
+local a1 = themesettings:Colorpicker({
+    name = "accent color",
+    def = activeTheme.accent,
+    callback = function(color)
+        activeTheme.accent = color
+        applyTheme(activeThemeName)
+        print("accent", color)
+    end
+})
+
+local lc1 = themesettings:Colorpicker({
+    name = "light contrast",
+    def = activeTheme.lightcontrast,
+    callback = function(color)
+        activeTheme.lightcontrast = color
+        applyTheme(activeThemeName)
+        print("light contrast", color)
+    end
+})
+
+local dc1 = themesettings:Colorpicker({
+    name = "dark contrast",
+    def = activeTheme.darkcontrast,
+    callback = function(color)
+        activeTheme.darkcontrast = color
+        applyTheme(activeThemeName)
+        print("dark", color)
+    end
+})
+
+local o1 = themesettings:Colorpicker({
+    name = "outline",
+    def = activeTheme.outline,
+    callback = function(color)
+        activeTheme.outline = color
+        applyTheme(activeThemeName)
+        print("outline", color)
+    end
+})
+
+local il1 = themesettings:Colorpicker({
+    name = "inline",
+    def = activeTheme.inline,
+    callback = function(color)
+        activeTheme.inline = color
+        applyTheme(activeThemeName)
+        print("inline", color)
+    end
+})
+
+local tc1 = themesettings:Colorpicker({
+    name = "text color",
+    def = activeTheme.textcolor,
+    callback = function(color)
+        activeTheme.textcolor = color
+        applyTheme(activeThemeName)
+        print("txt color", color)
+    end
+})
+
+local td1 = themesettings:Colorpicker({
+    name = "text dark",
+    def = activeTheme.textdark,
+    callback = function(color)
+        activeTheme.textdark = color
+        applyTheme(activeThemeName)
+        print("txt dark", color)
+    end
+})
+
+local tb1 = themesettings:Colorpicker({
+    name = "text border",
+    def = activeTheme.textborder,
+    callback = function(color)
+        activeTheme.textborder = color
+        applyTheme(activeThemeName)
+        print("text brdr", color)
+    end
+})
+
+local dasdas = themesettings:Colorpicker({
+    name = "cursor",
+    def = activeTheme.cursoroutline,
+    callback = function(color)
+        activeTheme.cursoroutline = color
+        applyTheme(activeThemeName)
+        print("cursor", color)
+    end
+})
+
+
+lib:Initialize()
 return library, utility, library.pointers, theme
