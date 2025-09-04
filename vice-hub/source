@@ -2757,6 +2757,3 @@ function lib:Notify(title, desc, dur)
 		Notification:Destroy()
 	end)()
 end
-
-getgenv().library = lib
-return lib
