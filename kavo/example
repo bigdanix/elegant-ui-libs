@@ -1,0 +1,78 @@
+-- Kavo Library
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bigdanix/elegant-ui-libs/refs/heads/main/kavo/source"))()
+local Window = Library.CreateLib("Kavo UI", "DarkTheme")
+
+-- Tabs
+local AT = Window:NewTab("Aimbot")
+local VT = Window:NewTab("Visuals")
+local ST = Window:NewTab("Settings")
+
+-- Aimbot Tab
+local SAIM = AT:NewSection("Silent Aim")
+SAIM:NewToggle("Enable", "Enable Silent Aim", function(state)
+    print(state)
+end)
+SAIM:NewKeybind("Keybind", "", Enum.KeyCode.E, function(key)
+    print(key)
+end)
+
+SAIM:NewSlider("Hitchance", "", 100, 0, function(s)
+end)
+
+SAIM:NewToggle("Team Check", "", function(state)
+    print(state)
+end)
+
+SAIM:NewToggle("Visible Check", "", function(state)
+    print(state)
+end)
+
+SAIM:NewDropdown("Aim Part", "", {"Head", "UpperTorso", "Torso", "LowerTorso"}, function(bool)
+    print(bool)
+end)
+
+SAIM:NewButton("God Mode", "", function()
+end)
+
+SAIM:NewTextBox("Whitelist Player", "Write username to whitelist them", function(txt)
+	print(txt)
+end)
+
+
+-- Visuals Tab
+local PE = VT:NewSection("Players ESP")
+PE:NewToggle("Enable", "", function(state)
+    print(state)
+end)
+
+PE:NewToggle("Names", "", function(state)
+    print(state)
+end)
+
+PE:NewToggle("Boxes", "", function(state)
+    print(state)
+end)
+
+PE:NewToggle("Distance", "", function(state)
+    print(state)
+end)
+
+PE:NewToggle("Tracers", "", function(state)
+    print(state)
+end)
+
+PE:NewColorPicker("ESP Color", "", Color3.fromRGB(255,255,255), function(color)
+end)
+
+
+PE:NewToggle("Rainbow ESP", "", function(state)
+    print(state)
+end)
+
+-- Settings Tab
+local ME = ST:NewSection("Menu Settings")
+ME:NewKeybind("Keybind", "KeybindInfo", Enum.KeyCode.Delete, function()
+	print("You just clicked the bind")
+end)
+ME:NewColorPicker("Accent", "", Color3.fromRGB(60,60,60), function(color)
+end)
