@@ -1,0 +1,174 @@
+local library, notifications = loadstring(game:HttpGet("https://raw.githubusercontent.com/bigdanix/elegant-ui-libs/refs/heads/main/monolith/source"))()
+
+local window = library:window({name = "monolith"})
+
+local aimbot = window:Tab({})  -- icon = "rbxassetid://1234567890", -- replace with actual icon ID
+local esp = window:Tab({})  -- icon = "rbxassetid://0987654321", -- replace with actual icon ID
+local misc = window:Tab({})  -- icon = "rbxassetid://1122334455", -- replace with actual icon ID
+
+
+-- silent aim
+local silentaim = aimbot:Section({name = "silent aim", side = "left"})
+local silentaimt = silentaim:Toggle({Name = "enabled",  Callback = function(bool)
+    print(bool)
+end})
+silentaimt:Keybind({Name = "bind", Default = Enum.KeyCode.E, Callback = function(key)
+    print(key)
+end})
+
+local hitchancet = silentaim:Toggle({Name = "hitchance", Callback = function(bool)
+    print(bool)
+end})
+
+hitchancet:Slider({Name = "hitchance", Min = 0, Max = 100, Default = 50, Suffix = "%", Callback = function(value)
+    print(value)
+end})
+
+silentaim:Dropdown({Name = "target", Items = {"nearest", "farthest", "random"}, Callback = function(value)
+    print(value)
+end})
+
+silentaim:Dropdown({Name = "hitbox", Items = {"head", "torso", "closest"}, Callback = function(value)
+    print(value)
+end})
+
+silentaim:Toggle({Name = "visibility check", Callback = function(bool)
+    print(bool)
+end})
+
+silentaim:Toggle({Name = "team check", Callback = function(bool)
+    print(bool)
+end})
+
+silentaim:Label({Name = "                                                 snapline"})
+silentaim:Toggle({Name = "enabled", Callback = function(bool)
+    print(bool)
+end})
+
+silentaim:Colorpicker({Name = "color", Default = Color3.fromRGB(255, 255, 255), Callback = function(color)
+    print(color)
+end})
+
+silentaim:Dropdown({Name = "from", Items = {"bottom", "top", "middle"}, Callback = function(value)
+    print(value)
+end})
+
+
+-- fov circle
+local fovcircle = aimbot:Section({name = "fov circle", side = "right"})
+local fovcirclet = fovcircle:Toggle({Name = "enabled", Callback = function(bool)
+    print(bool)
+end})
+fovcirclet:Colorpicker({Name = "color", Default = Color3.fromRGB(255, 255, 255), Callback = function(color)
+    print(color)
+end})
+
+local fovcircleo = fovcircle:Toggle({Name = "outline", Callback = function(bool)
+    print(bool)
+end})
+fovcircleo:Colorpicker({Name = "color", Default = Color3.fromRGB(255, 255, 255), Callback = function(color)
+    print(color)
+end})
+
+fovcircle:Slider({name = "radius", Min = 0, Max = 720, Default = 90, Suffix = "%", Callback = function(value)
+    print(value)
+end})
+
+fovcircle:Button({Name = "reset", Callback = function()
+    print("fov circle reset")
+end})
+
+
+-- visuals tab
+local playeresp = esp:Section({name = "player esp", side = "left"})
+playeresp:Toggle({Name = "enabled", Callback = function(bool)
+    print(bool)
+end})
+
+local nameesp = playeresp:Toggle({Name = "name", Callback = function(bool)
+    print(bool)
+end})
+nameesp:Colorpicker({Name = "name color", Default = Color3.fromRGB(255, 255, 255), Callback = function(color)
+    print(color)
+end})
+
+local boxesp = playeresp:Toggle({Name = "box", Callback = function(bool)
+    print(bool)
+end})
+boxesp:Colorpicker({Name = "box color", Default = Color3.fromRGB(255, 255, 255), Callback = function(color)
+    print(color)
+end})
+
+local healthbaresp = playeresp:Toggle({Name = "health bar", Callback = function(bool)
+    print(bool)
+end})
+healthbaresp:Colorpicker({Name = "healthbar color", Default = Color3.fromRGB(0, 255, 0), Callback = function(color)
+    print(color)
+end})
+
+playeresp:Label({Name = "settings", Side = "left"})
+playeresp:Textbox({Name = "custom text", Placeholder = "Enter custom text here", Callback = function(text)
+    print(text)
+end})
+
+playeresp:Slider({Name = "text size", Min = 10, Max = 50, Default = 20, Suffix = "px", Callback = function(value)
+    print(value)
+end})
+
+playeresp:Dropdown({Name = "checks", Items = {"team", "visible", "connection"}, Multi = true, Callback = function(value)
+    print(value)
+end})
+
+
+-- world esp
+local worldesp = esp:Section({name = "world esp", side = "right"})
+worldesp:Toggle({Name = "enabled", Callback = function(bool)
+    print(bool)
+end})
+
+local ambientc = worldesp:Toggle({Name = "ambient color", Callback = function(bool)
+    print(bool)
+end})
+ambientc:Colorpicker({Name = "color", Default = Color3.fromRGB(0, 0, 0), Callback = function(color)
+    print(color)
+end})
+
+
+-- misc tab
+local crosshair = misc:Section({name = "crosshair", side = "left"})
+local crosshairt = crosshair:Toggle({Name = "enabled", Callback = function(bool)
+    print(bool)
+end})
+crosshairt:Colorpicker({Name = "color", Default = Color3.fromRGB(255, 255, 255), Callback = function(color)
+    print(color)
+end})
+
+crosshair:Slider({name = "size", Min = 0, Max = 100, Default = 10, Suffix = "px", Callback = function(value)
+    print(value)
+end})
+
+local crosshairstyle = crosshair:Dropdown({Name = "style", Items = {"dot", "cross", "circle"}, Callback = function(value)
+    print(value)
+end})
+
+
+-- playermods
+local playermods = misc:Section({name = "player modification", side = "right"})
+playermods:Toggle({Name = "custom walkspeed", Callback = function(bool)
+    print(bool)
+end})
+playermods:Slider({name = "speed", Min = 0, Max = 100, Default = 42, Suffix = "%", Callback = function(value)
+    print(value)
+end})
+
+playermods:Toggle({Name = "custom jump height", Callback = function(bool)
+    print(bool)
+end})
+playermods:Slider({name = "jump height", Min = 0, Max = 100, Default = 29, Suffix = "%", Callback = function(value)
+    print(value)
+end})
+
+
+--
+window.toggle_menu(true)
+library:init_config(window) 
