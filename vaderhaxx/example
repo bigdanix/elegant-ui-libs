@@ -1,0 +1,474 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bigdanix/elegant-ui-libs/refs/heads/main/vaderhaxx/source"))()
+
+
+local window = library:window({})
+
+-- tabs
+do
+    local aimbot = window:tab({name = "aimbot"})
+    local esp = window:tab({name = "esp"})
+    local visuals = window:tab({name = "visuals"})
+    local misc = window:tab({name = "misc"})
+    local config = window:tab({name = "settings"})
+
+
+    -- aim assist
+    local aimassist = aimbot:section({name = "aim assistance", fill = 0.24})
+    local fovcircle = aimbot:section({name = "fov circle", side = "right", fill = 0.29})
+    local prediction = aimbot:section({name = "prediction", side = "left"})
+    local triggerbot = aimbot:section({name = "triggerbot", side = "right"})
+
+    -- aim assist
+    aimassist:toggle({name = "enabled", default = false, callback = function(bool)
+    
+    end})
+
+    aimassist:dropdown({name = "keybind", items = {"mouse 1", "mouse 2", "e", "q", "x"}, multi = false, default = "mouse 1", callback = function(key)
+    
+    end})
+
+    aimassist:slider({name = "smoothness", suffix = "%", min = 1, max = 100, default = 50, callback = function(v)
+    
+    end})
+
+    aimassist:slider({name = "max distnace", suffix = "m", min = 1, max = 5000, default = 1000, callback = function(v)
+    
+    end})
+
+    aimassist:dropdown({name = "preferred hitbox", items = {"head", "uppertorso", "torso", "humanoidrootpart", "lowertorso"}, multi = false, default = "head", callback = function(v)
+    
+    end})
+
+    aimassist:toggle({name = "bone prioritiation", default = false, callback = function(bool)
+    
+    end})
+
+    local snapline_t = aimassist:toggle({name = "draw snapline", default = false, callback = function(bool)
+    
+    end})
+    :colorpicker({name = "snapline color", color = Color3.new(1, 1, 1), alpha = 1, callback = function(color, alpha)
+    
+    end})
+
+    aimassist:slider({name = "thickness", suffix = "px", min = 1, max = 10, default = 1, callback = function(v)
+    
+    end})
+
+    aimassist:dropdown({name = "origin", items = {"cursor", "center"}, multi = false, default = "cursor", callback = function(v)
+    
+    end})
+
+    aimassist:toggle({name = "team check", default = true, callback = function(bool)
+    
+    end})
+
+    aimassist:toggle({name = "check visibility", default = true, callback = function(bool)
+    
+    end})
+
+    aimassist:dropdown({name = "ray origin", items = {"camera", "character"}, multi = false, default = "camera", callback = function(v)
+    
+    end})
+    aimassist:toggle({name = "sticky target", default = false, callback = function(bool)
+    
+    end})
+
+
+    -- prediction
+    prediction:toggle({name = "enabled", default = false, callback = function(bool)
+    
+    end})
+
+    prediction:slider({name = "factor", suffix = "%", min = 0, max = 2, decimal = 0.001, default = 0.125, callback = function(v)
+    
+    end})
+
+
+    -- fov circle
+    fovcircle:toggle({name = "enabled", default = false, callback = function(bool)
+    
+    end})
+    :colorpicker({name = "color", color = Color3.new(1, 1, 1), alpha = 1, callback = function(color, alpha)
+    
+    end})
+
+    fovcircle:toggle({name = "outline", default = false, callback = function(bool)
+    
+    end})
+    :colorpicker({name = "outline color", color = Color3.new(0, 0, 0), alpha = 1, callback = function(color, alpha)
+    
+    end})
+
+    fovcircle:toggle({name = "filled", default = false, callback = function(bool)
+    
+    end})
+    :colorpicker({name = "fill color", color = Color3.new(1, 1, 1), alpha = 0.3, callback = function(color, alpha)
+    
+    end})
+
+    fovcircle:slider({name = "radius", suffix = "°", min = 1, max = 720, default = 60, callback = function(v)
+    
+    end})
+
+    fovcircle:slider({name = "sides", suffix = "x", min = 1, max = 180, default = 90, callback = function(v)
+    
+    end})
+
+    fovcircle:slider({name = "thickness", suffix = "px", min = 1, max = 10, default = 1, callback = function(v)
+    
+    end})
+
+    fovcircle:dropdown({name = "origin", items = {"cursor", "center"}, multi = false, default = "cursor", callback = function(v)
+    
+    end})
+
+    fovcircle:label({name = "       custom effects"})
+
+
+    fovcircle:toggle({name = "enabled", default = false, callback = function(bool)
+    
+    end})
+
+    fovcircle:dropdown({name = "fov circle effect", items = {"pulse", "rainbow"}, multi = false, default = "pulse", callback = function(v)
+    
+    end})
+
+    fovcircle:slider({name = "pulse speed", suffix = "%", min = 1, max = 30, default = 5, callback = function(v)
+    
+    end})
+
+    fovcircle:slider({name = "pulse range", suffix = "°", min = 1, max = 50, default = 20, callback = function(v)
+    
+    end})
+
+    fovcircle:slider({name = "rainbow speed", suffix = "%", min = 1, max = 50, default = 10, callback = function(v)
+    
+    end})
+
+
+    -- triggerbot
+    triggerbot:toggle({name = "enabled", default = false, callback = function(bool)
+    
+    end})
+
+    triggerbot:dropdown({name = "keybind", items = {"mouse 1", "mouse 2", "e", "q", "x"}, multi = false, default = "mouse 1", callback = function(key)
+    
+    end})
+
+    triggerbot:slider({name = "delay", suffix = "s", min = 0, max = 5, decimal = 0.1, default = 0.1, callback = function(v)
+    
+    end})
+
+
+
+
+    -- esp
+    local enemyesp = esp:section({name = "enemy"})
+    local friendlyesp = esp:section({name = "friendly", side = "right", fill = 0.749})
+    local sharedsettings = esp:section({name = "shared settings", side = "right"})
+
+
+    enemyesp:toggle({name = "enabled", default = false, callback = function(bool)
+    
+    end})
+    local nameesp = enemyesp:toggle({name = "name", default = false, callback = function(bool)
+    
+    end})
+    nameesp:colorpicker({name = "name color", color = Color3.new(1, 1, 1), callback = function(color, alpha)
+    
+    end})
+
+    local boxesp = enemyesp:toggle({name = "box", default = false, callback = function(bool)
+    
+    end})
+    boxesp:colorpicker({name = "box color", color = Color3.new(1, 1, 1), callback = function(color, alpha)
+    
+    end})
+
+    local healthbaresp = enemyesp:toggle({name = "health bar", default = false, callback = function(bool)
+    
+    end})
+    healthbaresp:colorpicker({name = "health bar color", color = Color3.new(0, 1, 0), callback = function(color, alpha)
+    
+    end})
+
+    local healthtextesp = enemyesp:toggle({name = "health text", default = false, callback = function(bool)
+    
+    end})
+    healthtextesp:colorpicker({name = "health text color", color = Color3.new(0, 1, 0), callback = function(color, alpha)
+    
+    end})
+
+    local distanceesp = enemyesp:toggle({name = "distance", default = false, callback = function(bool)
+    
+    end})
+    distanceesp:colorpicker({name = "distance color", color = Color3.new(1, 1, 1), callback = function(color, alpha)
+    
+    end})
+
+    local traceresp = enemyesp:toggle({name = "tracer", default = false, callback = function(bool)
+    
+    end})
+    traceresp:colorpicker({name = "tracer color", color = Color3.new(1, 1, 1), callback = function(color, alpha)
+    
+    end})
+    enemyesp:dropdown({name = "tracer origin", items = {"bottom", "center", "top"}, multi = false, default = "bottom", callback = function(v)
+    
+    end})
+
+    local weaponesp = enemyesp:toggle({name = "weapon", default = false, callback = function(bool)
+    
+    end})
+    weaponesp:colorpicker({name = "weapon color", color = Color3.new(1, 0, 0), callback = function(color, alpha)
+    
+    end})
+
+    friendlyesp:toggle({name = "enabled", default = false, callback = function(bool)
+    
+    end})
+
+    local nameesp_f = friendlyesp:toggle({name = "name", default = false, callback = function(bool)
+    
+    end})
+    nameesp_f:colorpicker({name = "name color", color = Color3.new(1, 1, 1), callback = function(color, alpha)
+    
+    end})
+
+    local boxesp_f = friendlyesp:toggle({name = "box", default = false, callback = function(bool)
+    
+    end})
+    boxesp_f:colorpicker({name = "box color", color = Color3.new(1, 1, 1), callback = function(color, alpha)
+    
+    end})
+
+    local healthbaresp_f = friendlyesp:toggle({name = "health bar", default = false, callback = function(bool)
+    
+    end})
+    healthbaresp_f:colorpicker({name = "health bar color", color = Color3.new(0, 1, 0), callback = function(color, alpha)
+    
+    end})
+
+    local healthtextesp_f = friendlyesp:toggle({name = "health text", default = false, callback = function(bool)
+    
+    end})
+    healthtextesp_f:colorpicker({name = "health text color", color = Color3.new(0, 1, 0), callback = function(color, alpha)
+    
+    end})
+
+    local distanceesp_f = friendlyesp:toggle({name = "distance", default = false, callback = function(bool)
+    
+    end})
+    distanceesp_f:colorpicker({name = "distance color", color = Color3.new(1, 1, 1), callback = function(color, alpha)
+    
+    end})
+
+    local traceresp_f = friendlyesp:toggle({name = "tracer", default = false, callback = function(bool)
+    
+    end})
+    traceresp_f:colorpicker({name = "tracer color", color = Color3.new(1, 1, 1), callback = function(color, alpha)
+    
+    end})
+    friendlyesp:dropdown({name = "tracer origin", items = {"bottom", "center", "top"}, multi = false, default = "bottom", callback = function(v)
+    
+    end})
+
+    local weaponesp_f = friendlyesp:toggle({name = "weapon", default = false, callback = function(bool)
+    
+    end})
+    weaponesp_f:colorpicker({name = "weapon color", color = Color3.new(1, 0, 0), callback = function(color, alpha)
+    
+    end})
+
+    -- shared settings
+    sharedsettings:toggle({name = "limit distance", default = true, callback = function(bool)
+    
+    end})
+    sharedsettings:slider({name = "max distance", suffix = "m", min = 1, max = 5000, default = 1000, callback = function(v)
+    
+    end})
+
+
+
+
+
+    -- visuals
+    local world = visuals:section({name = "world"})
+    local camera = visuals:section({name = "camera", side = "right"})
+    local localplayer = visuals:section({name = "local player", side = "right", fill = 0.5})
+
+
+
+    -- world
+    local ambientc = world:toggle({name = "ambient", default = false, callback = function(bool)
+    
+    end})
+    ambientc:colorpicker({name = "ambient color", color = Color3.new(1, 1, 1), callback = function(color, alpha)
+    
+    end})
+    ambientc:colorpicker({name = "outdoor ambient color", color = Color3.new(0.485, 0.485, 0.485), callback = function(color, alpha)
+    
+    end})
+
+    world:toggle({name = "brightness", default = false, callback = function(bool)
+    
+    end})
+
+    world:slider({name = "value", suffix = "%", min = -3, max = 3, default = 0, decimal = 0.1, callback = function(v)
+    
+    end})
+
+    world:toggle({name = "exposure", default = false, callback = function(bool)
+    
+    end})
+
+    world:slider({name = "value", suffix = "%", min = -3, max = 3, default = 0, decimal = 0.1, callback = function(v)
+    
+    end})
+
+    world:toggle({name = "time of day", default = false, callback = function(bool)
+    
+    end})
+
+    world:slider({name = "hour", suffix = "h", min = 0, max = 24, default = 12, callback = function(v)
+    
+    end})
+
+    world:toggle({name = "fog", default = false, callback = function(bool)
+    
+    end}):colorpicker({name = "fog color", color = Color3.new(1, 1, 1), callback = function(color, alpha)
+    
+    end})
+
+    world:slider({name = "start", suffix = "m", min = 0, max = 1000, default = 0, callback = function(v)
+    
+    end})
+
+    world:slider({name = "end", suffix = "m", min = 0, max = 5000, default = 1000, callback = function(v)
+    
+    end})
+
+    world:toggle({name = "removals", default = false, callback = function(bool)
+    
+    end})
+
+    world:dropdown({name = "assets", items = {"decals", "textures", "terrain", "fog", "bloom", "sunrays", "depth of field", "color correction", "shadows", "particles"}, multi = true, callback = function(v)
+    
+    end})
+
+
+    -- camera
+    local fovct = camera:toggle({name = "fov changer", default = false, callback = function(bool)
+    
+    end})
+    fovct:keybind({name = "keybind", callback = function(v)
+    
+    end})
+
+    camera:slider({name = "fov", suffix = "°", min = 1, max = 120, default = 70, callback = function(v)
+    
+    end})
+
+    local zoomt = camera:toggle({name = "zoom", default = false, callback = function(bool)
+    
+    end})
+    zoomt:keybind({name = "keybind", callback = function(v)
+    
+    end})
+
+    camera:slider({name = "zoom fov", suffix = "°", min = 1, max = 120, default = 50, callback = function(v)
+    
+    end})
+
+
+    -- local player
+    localplayer:toggle({name = "chams", default = false, callback = function(bool)
+    
+    end}):colorpicker({name = "chams color", color = Color3.new(1, 0, 0), callback = function(color, alpha)
+    
+    end})
+
+    localplayer:dropdown({name = "material", items = {"forcefield", "neon", "plastic", "glass", "smoothplastic"}, multi = false, default = "forcefield", callback = function(v)
+    
+    end})
+
+    localplayer:slider({name = "transparency", suffix = "%", min = 0, max = 1, default = 0.5, decimal = 0.1, callback = function(v)
+    
+    end})
+
+
+
+
+    -- misc
+    local antiaim = misc:section({name = "anti-aim"})
+    local crosshair = misc:section({name = "crosshair", side = "right"})
+
+
+
+    -- anti aim
+    antiaim:toggle({name = "enabled", default = false, callback = function(bool)
+    
+    end})
+    antiaim:slider({name = "yaw offset", suffix = "°", min = -180, max = 180, default = 0, callback = function(v)
+    
+    end})
+    antiaim:slider({name = "jitter offset", suffix = "°", min = 0, max = 180, default = 15, callback = function(v)
+    
+    end})
+    antiaim:slider({name = "jitter speed", suffix = "%", min = 1, max = 20, default = 5, callback = function(v)
+    
+    end})
+
+
+    -- crosshair
+    crosshair:toggle({name = "enabled", default = false, callback = function(bool)
+    
+    end}):colorpicker({name = "color", color = Color3.new(1, 1, 1), callback = function(color, alpha)
+    
+    end})
+
+    crosshair:toggle({name = "outline", default = false, callback = function(bool)
+    
+    end}):colorpicker({name = "outline color", color = Color3.new(0, 0, 0), callback = function(color, alpha)
+    
+    end})
+
+    crosshair:slider({name = "length", suffix = "px", min = 1, max = 50, default = 5, callback = function(v)
+    
+    end})
+
+    crosshair:slider({name = "gap", suffix = "px", min = 1, max = 30, default = 4, callback = function(v)
+    
+    end})
+
+    crosshair:slider({name = "thickness", suffix = "px", min = 1, max = 10, default = 2, callback = function(v)
+    
+    end})
+
+    crosshair:dropdown({name = "origin", items = {"cursor", "center"}, multi = false, default = "cursor", callback = function(v)
+    
+    end})
+
+    crosshair:toggle({name = "rotation", default = false, callback = function(bool)
+    
+    end})
+
+    crosshair:dropdown({name = "style", items = {"linear", "easein", "easeout", "easeinout"}, multi = false, default = "linear", callback = function(v)
+    
+    end})
+
+    crosshair:slider({name = "rotation speed", suffix = "%", min = 1, max = 180, default = 180, callback = function(v)
+    
+    end})
+
+    crosshair:slider({name = "cycle length", suffix = "s", min = 1, max = 5, default = 10, decimal = 0.01, callback = function(v)
+    
+    end})
+
+    crosshair:slider({name = "cycle gap", suffix = "px", min = 1, max = 20, default = 4, callback = function(v)
+    
+    end})
+
+    crosshair:slider({name = "pause time", suffix = "s", min = 1, max = 10, default = 2, callback = function(v)
+    
+    end})
+end
