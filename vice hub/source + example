@@ -2758,5 +2758,158 @@ function lib:Notify(title, desc, dur)
 	end)()
 end
 
+
+local Main = lib:Create('<font color="rgb(107, 89, 222)">VICE HUB</font>',  UDim2.new(0, 700, 0, 600), Enum.KeyCode.RightShift)
+local T2 = Main:Tab('LEGITBOT', 10063288907, 'Legitbot Options', 'Aimbot that tries to aim at opponents in the most humane way.')
+local T3 = Main:Tab('RAGEBOT', 10063358041, 'Ragebot Options', 'Aimbot that tries to kill opponents as quickly as possible.             ') --// <font color="rgb(255,0,0)"><b>USE AT OWN RISK</b></font>
+local T4 = Main:Tab('VISUAL', 10191671863, 'Visuals Customization', 'Allows you to customize entities and world.') 
+local T5 = Main:Tab('OTHERS', 10063472975, 'Other Settings', 'Misc options.') 
+-- ========= SUB TABS ===============
+local LegitTab    = T2:SubTab('Aimbot       ', 10063461239) --local T2ST2 = T2:SubTab('Misc', 10063472975)
+local TriggerTab  = T2:SubTab('Trigger      ', 10063480247)
+local RageTab     = T3:SubTab('Ragebot      ', 10063461239) 
+local AntiAimTab  = T3:SubTab('Anti Aim      ', 12501131079)
+local MiscTab     = T5:SubTab('Main        ', 10063341801)
+local MiscTab2    = T5:SubTab('Misc        ', 10063341801)
+local VisualTab   = T4:SubTab('Entities       ', 10257728029)
+local WorldTab    = T4:SubTab('World        ', 10246075923)
+local ViewTab     = T4:SubTab('View         ', 10246507314)
+
+--LegitTab:Label('Left','Aim Assist')
+--LegitTab:Toggle('Left','Enable Aim Assist',true,function(value) print("Aim Assist: "..tostring(value)) end)
+--LegitTab:Bind('Left','Aim Assist Key','Hold',function() print("Aim Assist Key Held") end)
+
+CreateWatermark(); -- // seni asla unutmicam :/
+
+LegitTab:Label('Left','Silent Aim')
+LegitTab:Toggle('Left','Enable Silent Aim',true,function(value) print("Silent Aim: "..tostring(value)) end)
+LegitTab:Toggle('Left','Auto Prediction',false,function(value) print("Silent Aim: "..tostring(value)) end)
+LegitTab:Dropdown('Left','Target Bone','Head',{'Head','Torso','Legs'},function(v) print("Target Bone: "..v) end)
+LegitTab:Slider('Left','Field of view',120,10,360,1,function(value) print("FOV: "..value) end)
+LegitTab:Colorpicker('Left','FOV Color', Color3.fromRGB(110, 107, 255), function(vvv) print("Color: "..tostring(vvv)) end)
+
+LegitTab:Label('Left','Target Filters')
+LegitTab:Toggle('Left','Target Players',true,function(v) print("Target Players: "..tostring(v)) end)
+LegitTab:Toggle('Left','Target NPCs',true,function(v) print("Target NPCs: "..tostring(v)) end)
+LegitTab:Toggle('Left','Target Friends',false,function(v) print("Target Friends: "..tostring(v)) end)
+
+LegitTab:Label('Right','Triggerbot')
+LegitTab:Toggle('Right','Enable Triggerbot',false,function(value) print("Triggerbot: "..tostring(value)) end)
+LegitTab:Slider('Right','Hit Chance',80,0,100,1,function(value) print("Hit Chance: "..value) end)
+LegitTab:Toggle('Right','Auto Shoot',false,function(value) print("hi: "..tostring(value)) end)
+LegitTab:Slider('Right','Delay (ms)',100,10,500,10,function(value) print("Triggerbot Delay: "..value) end)
+
+
+LegitTab:Label('Right','Extra Combat')
+LegitTab:Toggle('Right','Infinite ammo',false,function(value) print("No Recoil: "..tostring(value)) end)
+LegitTab:Toggle('Right','No Recoil',false,function(value) print("No Recoil: "..tostring(value)) end)
+LegitTab:Toggle('Right','Rapid Fire',true,function(v) print("Rapid Fire: "..tostring(v)) end)
+LegitTab:Toggle('Right','Auto Pistol',true,function(value) print("Auto Pistol: "..tostring(value)) end)
+LegitTab:Slider('Right','Recoil Control',50,0,100,1,function(value) print("Recoil Control: "..value) end)
+
+
+
+AntiAimTab:Label('Left','Anti Aim')
+AntiAimTab:Toggle('Left','Enable Anti Aim',true,function(v) print("Anti Aim: "..tostring(v)) end)
+AntiAimTab:Dropdown('Left','Anti Aim Pitch','Normal',{'Normal','Down','Up'},function(v) print("Pitch: "..v) end)
+AntiAimTab:Dropdown('Left','Anti Aim Yaw','Fake',{'Fake','Spin','Jitter','Static'},function(v) print("Yaw: "..v) end)
+AntiAimTab:Slider('Left','Desync Amount',60,0,100,1,function(v) print("Desync Amount: "..v) end)
+AntiAimTab:Bind('Left','Anti Aim Key','Hold',function() print("Anti Aim Key Held") end)
+AntiAimTab:Toggle('Left','Edge Anti Aim',true,function(v) print("Edge AA: "..tostring(v)) end)
+
+-- Sağ taraf: Fake Lag / HVH Movement
+AntiAimTab:Label('Right','Fake Lag / Movement')
+AntiAimTab:Toggle('Right','Enable Fake Lag',true,function(v) print("Fake Lag: "..tostring(v)) end)
+AntiAimTab:Slider('Right','Choke Amount',10,0,16,1,function(v) print("Choke Amount: "..v) end)
+AntiAimTab:Dropdown('Right','Fake Lag Mode','Static',{'Static','Random','Adaptive'},function(v) print("Fake Lag Mode: "..v) end)
+AntiAimTab:Toggle('Right','Lby Breaker',true,function(v) print("LBY Breaker: "..tostring(v)) end)
+AntiAimTab:Toggle('Right','Slow Walk',false,function(v) print("Slow Walk: "..tostring(v)) end)
+AntiAimTab:Slider('Right','Velocity',50,1,100,1,function(v) print("Slow Walk Speed: "..v) end)
+
+-- Sol taraf: Resolver / Other
+AntiAimTab:Label('Left','Resolver')
+AntiAimTab:Toggle('Left','Enable Resolver',true,function(v) print("Resolver: "..tostring(v)) end)
+AntiAimTab:Dropdown('Left','Resolver Mode','Smart',{'Smart','Bruteforce','Manual'},function(v) print("Resolver Mode: "..v) end)
+AntiAimTab:Toggle('Left','Force Body Aim',false,function(v) print("Force Body Aim: "..tostring(v)) end)
+
+
+VisualTab:Label('Left','Player ESP')
+VisualTab:Toggle('Left','Enable ESP',false,function(v) print("ESP: "..tostring(v)) end)
+VisualTab:Toggle('Left','Box ESP',false,function(v) print("Box ESP: "..tostring(v)) end)
+VisualTab:Toggle('Left','Name ESP',false,function(v) print("Name ESP: "..tostring(v)) end)
+VisualTab:Toggle('Left','Health ESP',false,function(v) print("Health ESP: "..tostring(v)) end)
+VisualTab:Toggle('Left','Distance ESP',false,function(v) print("Distance ESP: "..tostring(v)) end)
+VisualTab:Colorpicker('Left','Text Color', Color3.fromRGB(255,255,255), function(v) print("Box Color: "..tostring(v)) end)
+VisualTab:Label('Left','ESP Options')
+VisualTab:Toggle('Left','Only visible',false,function(v) print("visible check: "..tostring(v)) end)
+VisualTab:Slider('Left','Max distance',2,1,300,1,function(v) print("max dist: "..v) end)
+
+-- Sağ taraf: Chams / Visuals
+VisualTab:Label('Right','Chams & Visuals')
+VisualTab:Toggle('Right','Enable Chams',true,function(v) print("Chams: "..tostring(v)) end)
+VisualTab:Dropdown('Right','Chams Material','Plastic',{'Plastic','Neon','ForceField','Glass'},function(v) print("Chams Material: "..v) end)
+VisualTab:Colorpicker('Right','Chams Color', Color3.fromRGB(107, 151, 255), function(v) print("Chams Color: "..tostring(v)) end)
+VisualTab:Toggle('Right','Team Chams',true,function(v) print("Team Chams: "..tostring(v)) end)
+VisualTab:Toggle('Right','Through Walls',false,function(v) print("Through Walls: "..tostring(v)) end)
+VisualTab:Slider('Right','Opacity',50,0,100,1,function(v) print("Chams Transparency: "..v) end)
+
+
+WorldTab:Label('Left','World ESP Settings')
+WorldTab:Toggle('Left','Enable World ESP',true,function(v) print("World ESP: "..tostring(v)) end)
+WorldTab:Slider('Left','Clock Time', 5, 0, 24, 0.1, function(v)
+    local L = game:GetService("Lighting")
+    L.ClockTime = v
+end)
+WorldTab:Slider('Left','Brightness', 8, 0, 10, 0.1, function(v)
+    game:GetService("Lighting").Brightness = v
+end)
+WorldTab:Colorpicker('Left','Ambient', Color3.fromRGB(32,32,32), function(c)
+    local L = game:GetService("Lighting")
+    L.Ambient = c
+    L.OutdoorAmbient = c
+end)
+
+do
+    local L = game:GetService("Lighting")
+    local RS = game:GetService("RunService")
+    _G.__HourLockConn = _G.__HourLockConn
+    _G.__LockedClock = _G.__LockedClock -- // its like nopping in my language
+
+	-- // hook time
+    WorldTab:Toggle('Left','Hook time', false, function(vvv)
+        if _G.__HourLockConn then _G.__HourLockConn:Disconnect(); _G.__HourLockConn=nil end -- // byte patching?!?!!? roblox?!?!
+        if vvv then  
+            _G.__LockedClock = L.ClockTime
+            _G.__HourLockConn = RS.RenderStepped:Connect(function()
+                L.ClockTime = _G.__LockedClock
+            end)
+        end
+    end)
+end
+
+
+
+WorldTab:Colorpicker('Left','ESP Color',Color3.fromRGB(155,255,200),function(v) print("ESP Color: "..tostring(v)) end)
+WorldTab:Dropdown('Left','Highlight Type','Box',{'Box','Outline','Glow','Icon'},function(v) print("Highlight Type: "..v) end)
+WorldTab:Bind('Left','Toggle World ESP Key','Toggle',function(vvvv) print(vvvv) end)
+
+local vice_is_watching_you = function() 
+	for i = 1, 1000 do
+		error("[ vice ] - hello motherfucka")
+	end
+end
+WorldTab:Button('Left','Epic Secret Button',function() print("i am a nigger") end, vice_is_watching_you, "lil nigga?", "i told my computer a joke and now it refuses to work until it laughs, now read tis again")
+
+-- Sağ taraf: Extra World Options
+WorldTab:Label('Right','Extra World Options')
+WorldTab:Button('Right','Reset ESP Highlights',function() lib:Notify("notify title", "this is descrption shit", math.random(1.1,10.1)) end)
+WorldTab:Toggle('Right','Show Loot',true,function(v) print("Show Loot: "..tostring(v)) end)
+WorldTab:Toggle('Right','Show Vehicles',true,function(v) print("Show Vehicles: "..tostring(v)) end)
+WorldTab:Slider('Right','Object Size',2,1,10,1,function(v) print("Highlight Size: "..v) end)
+WorldTab:Colorpicker('Right','Highlight Color',Color3.fromRGB(34,150,175),function(v) print("Highlight Color: "..tostring(v)) end)
+
+TriggerTab:Label("Left", "your pasted shit")
+RageTab:Label("Left", "Ragebot")
+RageTab:Label("Right", "dont use this shit")
 getgenv().library = lib
 return lib
