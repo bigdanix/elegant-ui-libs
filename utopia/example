@@ -1,0 +1,399 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bigdanix/elegant-ui-libs/refs/heads/main/utopia/source"))()
+
+local Window = Library:Window({
+    Name = "utopia",
+    GradientTitle = {
+        Enabled = true,
+        Start = Color3.fromRGB(255, 255, 255),
+        Middle = Color3.fromRGB(0, 251, 255),
+        End = Color3.fromRGB(50, 135, 168),
+        Speed = 1
+    }
+})
+
+local Watermark = Library:Watermark("utopia.beschde / fps: 69 / ping: 67 / build: private", {"77974153657891", Color3.fromRGB(149, 255, 139)})
+local KeybindList = Library:KeybindList()
+
+Watermark:SetVisibility(false)
+KeybindList:SetVisibility(false)
+
+
+-- tabs
+local aimbottab = Window:Page({Name = "aimbot", Columns = 2})
+local visualstab = Window:Page({Name = "visuals", Columns = 2})
+local misctab = Window:Page({Name = "misc", Columns = 2})
+local playerstab = Window:Page({Name = "players", Columns = 1})
+local SettingsTab = Window:Page({Name = "settings", Columns = 2})
+
+
+-- aimbot tab
+local bulletredirection = aimbottab:Section({Name = "bullet redirection", Side = 1})
+local bulletredirectiont = bulletredirection:Toggle({Name = "enabled", Default = false, Flag = "bulletredirectionFlag", Tooltip = "redirects bullets fired to a target", Risky = true, Callback = function(bool)
+    print(bool)
+end})
+bulletredirectiont:Keybind({Name = "keybind", Default = Enum.KeyCode.E, Mode = "Hold", Flag = "bulletredirectionkeybindFlag", Callback = function(key)
+    print(key)
+end})
+
+bulletredirection:Slider({Name = "hitchance", Min = 0, Default = 50, Max = 100, Suffix = "%", Decimals = 1, Flag = "bulletredirectionhitchanceFlag", Callback = function(value)
+    print(value)
+end})
+
+bulletredirection:Dropdown({Name = "target part", Items = {"head", "torso", "random"}, Default = "head", Flag = "bulletredirectiontargetpartFlag", Callback = function(value)
+    print(value)
+end})
+
+bulletredirection:Slider({Name = "max distance", Min = 0, Default = 100, Max = 1000, Suffix = " studs", Decimals = 1, Flag = "bulletredirectionmaxdistanceFlag", Callback = function(value)
+    print(value)
+end})
+
+bulletredirection:Button({Name = "restart", Tooltip = "restarts bullet redirection for improved performance", Callback = function()
+    print("force reset")
+end})
+
+
+-- fov circle
+local fovcircle = aimbottab:Section({Name = "fov circle", Side = 2})
+local fovcirclet = fovcircle:Toggle({Name = "enabled", Default = false, Flag = "fovcircleFlag", Tooltip = "draws a fov circle", Callback = function(bool)
+    print(bool)
+end})
+fovcirclet:Colorpicker({Name = "color", Default = Color3.fromRGB(255, 255, 255), Flag = "fovcirclecolorFlag", Callback = function(color)
+    print(color)
+end})
+
+local fovcircleoutline = fovcircle:Toggle({Name = "outline", Default = false, Flag = "fovcircleoutlineFlag", Tooltip = "draws an outline around the fov circle", Callback = function(bool)
+    print(bool)
+end})
+fovcircleoutline:Colorpicker({Name = "outline color", Default = Color3.fromRGB(0, 0, 0), Flag = "fovcircleoutlinecolorFlag", Callback = function(color)
+    print(color)
+end})
+
+fovcircle:Slider({Name = "radius", Min = 0, Default = 100, Max = 500, Suffix = " degrees", Decimals = 1, Flag = "fovcircleradiusFlag", Callback = function(value)
+    print(value)
+end})
+
+fovcircle:Slider({Name = "sides", Min = 3, Default = 30, Max = 100, Suffix = "x", Decimals = 1, Flag = "fovcirclesidesFlag", Callback = function(value)
+    print(value)
+end})
+
+fovcircle:Slider({Name = "thickness", Min = 1, Default = 1, Max = 10, Suffix = " px", Decimals = 1, Flag = "fovcirclethicknessFlag", Callback = function(value)
+    print(value)
+end})
+
+
+-- prediction
+local prediction = aimbottab:Section({Name = "prediction", Side = 1})
+prediction:Toggle({Name = "enabled", Default = false, Flag = "predictionFlag", Tooltip = "predicts the movement of targets", Callback = function(bool)
+    print(bool)
+end})
+prediction:Slider({Name = "amount", Min = 0, Default = 0.1, Max = 2, Suffix = "%", Decimals = 0.01, Flag = "predictionamountFlag", Callback = function(value)
+    print(value)
+end})
+
+
+-- visuals tab
+local esp = visualstab:Section({Name = "esp", Side = 1})
+esp:Toggle({Name = "enabled", Default = false, Flag = "espFlag", Tooltip = "master toggle for esp", Callback = function(bool)
+    print(bool)
+end})
+
+local nameesp = esp:Toggle({Name = "names", Default = false, Flag = "nameespFlag", Tooltip = "draws the names of players", Callback = function(bool)
+    print(bool)
+end})
+nameesp:Colorpicker({Name = "name esp color", Default = Color3.fromRGB(255, 255, 255), Flag = "nameespcolorFlag", Callback = function(color)
+    print(color)
+end})
+
+local boxesp = esp:Toggle({Name = "boxes", Default = false, Flag = "boxespFlag", Tooltip = "draws a box around players", Callback = function(bool)
+    print(bool)
+end})
+boxesp:Colorpicker({Name = "box esp color", Default = Color3.fromRGB(255, 255, 255), Flag = "boxespcolorFlag", Callback = function(color)
+    print(color)
+end})
+
+esp:Dropdown({Name = "box type", Items = {"full", "corner"}, Default = "full", Flag = "boxtypeFlag", Callback = function(value)
+    print(value)
+end})
+
+local healthbaresp = esp:Toggle({Name = "health bars", Default = false, Flag = "healthbarespFlag", Tooltip = "draws health bars next to players", Callback = function(bool)
+    print(bool)
+end})
+healthbaresp:Colorpicker({Name = "health bar color", Default = Color3.fromRGB(0, 255, 0), Flag = "healthbarcolorFlag", Callback = function(color)
+    print(color)
+end})
+
+local distanceesp = esp:Toggle({Name = "distance", Default = false, Flag = "distanceespFlag", Tooltip = "draws the distance to players", Callback = function(bool)
+    print(bool)
+end})
+distanceesp:Colorpicker({Name = "distance esp color", Default = Color3.fromRGB(128, 128, 128), Flag = "distanceespcolorFlag", Callback = function(color)
+    print(color)
+end})
+
+esp:Label("settings")
+
+esp:Toggle({Name = "limit distance", Default = false, Flag = "esplimitdistanceFlag", Callback = function(bool)
+    print(bool)
+end})
+esp:Slider({Name = "max distance", Min = 0, Default = 1000, Max = 5000, Suffix = " studs", Decimals = 1, Flag = "espmaxdistanceFlag", Callback = function(value)
+    print(value)
+end})
+
+
+-- misc tab
+local antiaim = misctab:Section({Name = "anti aim", Side = 1})
+antiaim:Toggle({Name = "enabled", Default = false, Flag = "antiaimFlag", Risky = true, Callback = function(bool)
+    print(bool)
+end})
+
+antiaim:Dropdown({Name = "mode", Items = {"jitter", "spin"}, Default = "jitter", Flag = "antiaimmodeFlag", Callback = function(value)
+    print(value)
+end})
+
+antiaim:Slider({Name = "yaw offset", Min = -180, Default = 90, Max = 180, Suffix = " degrees", Decimals = 1, Flag = "antiaimyawoffsetFlag", Callback = function(value)
+    print(value)
+end})
+
+antiaim:Slider({Name = "jitter offset", Min = -180, Default = 30, Max = 180, Suffix = " degrees", Decimals = 1, Flag = "antiaimjitteroffsetFlag", Callback = function(value)
+    print(value)
+end})
+
+antiaim:Slider({Name = "jitter speed", Min = 0, Default = 10, Max = 50, Suffix = "%", Decimals = 1, Flag = "antiaimjitterspeedFlag", Callback = function(value)
+    print(value)
+end})
+
+antiaim:Slider({Name = "spin speed", Min = 0, Default = 10, Max = 100, Suffix = " degrees", Decimals = 1, Flag = "antiaimspinspeedFlag", Callback = function(value)
+    print(value)
+end})
+
+
+-- playerlist tab
+playerstab:PlayerList({
+    Name = "playerlist", 
+    Flag = "Playerlist", 
+    Callback = function(Players)
+        print(Players)
+    end
+})
+
+
+-- settings tab
+local ThemesSection = SettingsTab:Section({ Name = "Settings", Side = 1 })
+
+do
+    for Index, Value in Library.Theme do 
+        Library.ThemeColorpickers[Index] = ThemesSection:Label(Index, "Left"):Colorpicker({
+            Name = Index,
+            Flag = "Theme" .. Index,
+            Default = Value,
+            Callback = function(Value)
+                Library.Theme[Index] = Value
+                Library:ChangeTheme(Index, Value)
+            end
+        })
+    end
+
+    ThemesSection:Dropdown({Name = "Themes list", Items = {"Default", "Bitchbot", "Onetap", "Aqua"}, Default = "Default", Callback = function(Value)
+        local ThemeData = Library.Themes[Value]
+
+        if not ThemeData then 
+            return
+        end
+
+        for Index, Value in Library.Theme do 
+            Library.Theme[Index] = ThemeData[Index]
+            Library:ChangeTheme(Index, ThemeData[Index])
+
+            Library.ThemeColorpickers[Index]:Set(ThemeData[Index])
+        end
+
+        task.wait(0.3)
+
+        Library:Thread(function() -- i do this because sometimes the themes dont update
+            for Index, Value in Library.Theme do 
+                Library.Theme[Index] = Library.Flags["Theme"..Index].Color
+                Library:ChangeTheme(Index, Library.Flags["Theme"..Index].Color)
+            end    
+        end)
+    end})
+
+    local ThemeName
+    local SelectedTheme 
+
+    local ThemesListbox = ThemesSection:Listbox({
+        Name = "Themes List",
+        Flag = "Themes List",
+        Items = { },
+        Multi = false,
+        Default = nil,
+        Callback = function(Value)
+            SelectedTheme = Value
+        end
+    })
+
+    ThemesSection:Textbox({
+        Name = "Name",
+        Flag = "Theme Name",
+        Default = "",
+        Placeholder = ". . .",
+        Callback = function(Value)
+            ThemeName = Value
+        end
+    })
+
+    ThemesSection:Button({
+        Name = "Save Theme",
+        Callback = function()
+            if ThemeName == "" then 
+                return
+            end
+
+            if not isfile(Library.Folders.Themes .. "/" .. ThemeName .. ".json") then
+                writefile(Library.Folders.Themes .. "/" .. ThemeName .. ".json", Library:GetTheme())
+
+                Library:RefreshThemeList(ThemesListbox)
+            else
+                Library:Notification("Theme '" .. ThemeName .. ".json' already exists", 3, Color3.fromRGB(255, 0, 0))
+                return
+            end
+        end
+    }):SubButton({
+        Name = "Load Theme",
+        Callback = function()
+            if SelectedTheme then
+                Library:LoadTheme(readfile(Library.Folders.Themes .. "/" .. SelectedTheme))
+            end
+        end
+    })
+
+    ThemesSection:Button({
+        Name = "Refresh Themes",
+        Callback = function()
+            Library:RefreshThemeList(ThemesListbox)
+        end
+    })
+
+    Library:RefreshThemeList(ThemesListbox)
+end
+
+local ConfigsSection = SettingsTab:Section({  Name = "Configs", Side = 2 })
+
+do 
+    local ConfigName 
+    local SelectedConfig 
+
+    local ConfigsListbox = ConfigsSection:Listbox({
+        Name = "Configs list",
+        Flag = "Configs List",
+        Items = { },
+        Multi = false,
+        Default = nil,
+        Callback = function(Value)
+            SelectedConfig = Value
+        end
+    })
+
+    ConfigsSection:Textbox({
+        Name = "Name",
+        Flag = "Config Name",
+        Default = "",
+        Placeholder = ". . .",
+        Callback = function(Value)
+            ConfigName = Value
+        end
+    })
+
+    ConfigsSection:Button({
+        Name = "Load Config",
+        Callback = function()
+            if SelectedConfig then
+                Library:LoadConfig(readfile(Library.Folders.Configs .. "/" .. SelectedConfig))
+            end
+
+            Library:Thread(function()
+                task.wait(0.1)
+
+                for Index, Value in Library.Theme do 
+                    Library.Theme[Index] = Library.Flags["Theme"..Index].Color
+                    Library:ChangeTheme(Index, Library.Flags["Theme"..Index].Color)
+                end    
+            end)
+        end
+    }):SubButton({
+        Name = "Save Config",
+        Callback = function()
+            if SelectedConfig then
+                Library:SaveConfig(SelectedConfig)
+            end
+        end
+    })
+
+    ConfigsSection:Button({
+        Name = "Create Config",
+        Callback = function()
+            if ConfigName == "" then 
+                return
+            end
+
+            if not isfile(Library.Folders.Configs .. "/" .. ConfigName .. ".json") then
+                writefile(Library.Folders.Configs .. "/" .. ConfigName .. ".json", Library:GetConfig())
+
+                Library:RefreshConfigsList(ConfigsListbox)
+            else
+                Library:Notification("Config '" .. ConfigName .. ".json' already exists", 3, Color3.fromRGB(255, 0, 0))
+                return
+            end
+        end
+    }):SubButton({
+        Name = "Delete Config",
+        Callback = function()
+            if SelectedConfig then
+                Library:DeleteConfig(SelectedConfig)
+
+                Library:RefreshConfigsList(ConfigsListbox)
+            end
+        end
+    })
+
+    ConfigsSection:Button({
+        Name = "Refresh Configs",
+        Callback = function()
+            Library:RefreshConfigsList(ConfigsListbox)
+        end
+    })
+
+    Library:RefreshConfigsList(ConfigsListbox)
+
+    ConfigsSection:Label("Menu Keybind", "Left"):Keybind({Name = "Menu Keybind", Flag = "Menu Keybind", Default = Enum.KeyCode.RightControl, Mode = "Toggle", Callback = function(Value)
+        Library.MenuKeybind = Library.Flags["Menu Keybind"].Key
+    end})
+
+    ConfigsSection:Toggle({Name = "Watermark", Flag = "Watermark", Default = false, Callback = function(Value)
+        Watermark:SetVisibility(Value)
+    end})
+
+    ConfigsSection:Toggle({Name = "Keybind List", Flag = "Keybind List", Default = false, Callback = function(Value)
+        KeybindList:SetVisibility(Value)
+    end})
+
+    ConfigsSection:Dropdown({Name = "Style", Flag = "Tweening Style", Default = "Exponential", Items = {"Linear", "Sine", "Quad", "Cubic", "Quart", "Quint", "Exponential", "Circular", "Back", "Elastic", "Bounce"}, Callback = function(Value)
+        Library.Tween.Style = Enum.EasingStyle[Value]
+    end})
+
+    ConfigsSection:Dropdown({Name = "Direction", Flag = "Tweening Direction", Default = "Out", Items = {"In", "Out", "InOut"}, Callback = function(Value)
+        Library.Tween.Direction = Enum.EasingDirection[Value]
+    end})
+
+    ConfigsSection:Slider({Name = "Tweening Time", Min = 0, Max = 5, Default = 0.25, Decimals = 0.01, Flag = "Tweening Time", Callback = function(Value)
+        Library.Tween.Time = Value
+    end})
+
+    ConfigsSection:Button({Name = "Notification test", Callback = function()
+        Library:Notification("This is a notification This is a notification This is a notification This is a notification", 5, Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)))
+    end})
+
+    ConfigsSection:Button({Name = "Unload library", Callback = function()
+        Library:Unload()
+    end})
+end
+
+Library:Notification("Loaded library in " .. string.format("%.4f", os.clock() - LoadingTick) .. " seconds", 5, Color3.fromRGB(0, 255, 0), {"135757045959142", Color3.fromRGB(149, 255, 139)})
